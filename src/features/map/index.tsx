@@ -4,12 +4,14 @@ import { createScene } from "./scene";
 import {
   churchPinMediaQueries,
   infoLabelMediaQueries,
+  updateElementSize,
 } from "./utils/responsive";
+import { useWindowSize } from "app/src/hooks/window-size";
 
 const Map = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const [scene, setScene] = useState<SceneView>();
-  //   const { width } = useWindowSize();
+  const { width } = useWindowSize();
 
   useEffect(() => {
     if (mapContainer.current && !scene) {
@@ -36,22 +38,17 @@ const Map = () => {
     //   .subscribe();
   }, [scene]);
 
-  // useEffect(() => {
-  //   //     if (width) {
-  //   //       const rawQuery = MEDIA_QUERIES.reduce((prev, curr) => {
-  //   //         if (width > Number(curr)) return curr;
-  //   //         if (width > Number(prev) && width < Number(curr)) return curr;
-  //   //         else return prev;
-  //   //       }, "600");
-  //   //       const query = width > Number(rawQuery) ? "default" : rawQuery;
-  //   scene?.map.layers.forEach((layer) => {
-  //     if (layer.id === "PINS") {
-  //       layer.set("labelingInfo", infoLabelMediaQueries.default);
-  //       layer.set("renderer", churchPinMediaQueries.default);
-  //     }
-  //   });
-  //   //     }
-  // }, [scene]);
+  useEffect(() => {
+    if (!width || !scene) return;
+
+    const size = updateElementSize(width);
+    scene.map.layers.forEach((layer) => {
+      if (layer.id === "PINS") {
+        layer.set("labelingInfo", infoLabelMediaQueries[size]);
+        layer.set("renderer", churchPinMediaQueries[size]);
+      }
+    });
+  }, [width, scene]);
 
   return (
     <div style={{ position: "absolute", height: "100vh", width: "100vw" }}>

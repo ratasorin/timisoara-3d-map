@@ -30,3 +30,13 @@ export const infoLabelMediaQueries = {
     style: "italic",
   }),
 } as const;
+
+type Breakpoints = "sm" | "md" | "lg" | "xl";
+
+export const updateElementSize = (width: number): Breakpoints => {
+  if (width < 600) return "sm";
+  if (width >= 600 && width < 800) return "md";
+  if (width >= 800 && width <= 1000) return "lg";
+
+  return "xl";
+};
