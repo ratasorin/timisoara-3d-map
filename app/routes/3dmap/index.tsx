@@ -1,11 +1,12 @@
 import { lazy } from "react";
-import { ClientOnly } from "src/utils/client-only";
+import Fallback from "src/features/map/components/fallback";
+import { ClientOnly } from "app/src/utils/client-only";
 
 const ClientMap = lazy(() => import("src/features/map"));
 
 const MapRoute = () => {
   return (
-    <ClientOnly>
+    <ClientOnly fallback={<Fallback />}>
       <ClientMap />
     </ClientOnly>
   );
