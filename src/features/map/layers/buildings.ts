@@ -8,7 +8,7 @@ import { buildingRenderer } from "../render/buildings";
 type SelectedBuilding = Graphic;
 
 export const buildingsLayer = new FeatureLayer({
-  id: "BUILDINGS",
+  id: "buildings",
   portalItem: {
     id: PORTAL_ID,
   },

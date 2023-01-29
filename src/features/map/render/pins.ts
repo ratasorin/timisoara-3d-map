@@ -7,7 +7,7 @@ const CHURCH_ICON_URL =
   "https://developers.arcgis.com/javascript/latest/sample-code/visualization-point-styles/live/Church.png";
 
 const OFFSET = {
-  SCREEN_LENGTH: 100,
+  SCREEN_LENGTH: 50,
   MAX_WORLD_LENGTH: 135,
   MIN_WORLD_LENGTH: 75,
 };
@@ -29,11 +29,7 @@ export const createPin = ({
     symbolLayers: [
       {
         type: "icon",
-        anchor: "relative",
-        anchorPosition: {
-          x: 0,
-          y: 1,
-        },
+        anchor: "center",
         resource: {
           href: iconUrl,
         },
@@ -77,7 +73,7 @@ const createUniquePinForBuilding = (
  * @param size The size of the icon
  * @param lineWidth The width of the line
  */
-export const pinsRenderer = (size: number = 35, lineWidth: number = 5) => {
+export const pinsRenderer = (size: number, lineWidth: number) => {
   return new UniqueValueRenderer({
     field: "osm_id",
     uniqueValueInfos: Buildings.map((building) =>
