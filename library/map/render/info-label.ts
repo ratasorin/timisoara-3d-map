@@ -13,7 +13,7 @@ export const createInfoLabel = (font: Font) => {
       expression: "$feature.name",
     },
     labelPlacement: "above-center",
-    minScale: 650,
+    minScale: 1100,
     symbol: new TextSymbol({
       backgroundColor: "white",
       color: "black",

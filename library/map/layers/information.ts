@@ -8,6 +8,10 @@ export const informationLayer = new FeatureLayer({
   portalItem: {
     id: "3677599f43b9484aa01a0ee212beb410",
   },
+  featureReduction: {
+    type: "selection",
+  },
+  screenSizePerspectiveEnabled: true,
   definitionExpression: BUILDINGS_QUERY,
   elevationInfo: {
     mode: "relative-to-scene",
