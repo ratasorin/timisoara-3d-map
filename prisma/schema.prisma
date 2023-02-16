@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String      @id @default(uuid())
+  password      String
+  email         String      @unique
+  name          String      @unique
+  picture       UserPicture @relation(fields: [userPictureId], references: [id])
+  Session       Session[]
+  userPictureId String      @unique
+  Blog          Blog[]
+  Building      Building[]
+}
+
+model UserPicture {
+  id       String @id @default(uuid())
+  imageKey String
+  User     User?
+}
+
+model Building {
+  id               String            @id @default(uuid())
+  name             String
+  osmId            String            @unique
+  description      String
+  author           User              @relation(fields: [userId], references: [id])
+  BuildingPictures BuildingPicture[]
+  BuildingTag      BuildingTag       @relation(fields: [buildingTagId], references: [id])
+  buildingTagId    String
+  userId           String
+}
+
+model BuildingTag {
+  id       String     @id @default(uuid())
+  tag      String     @unique
+  Building Building[]
+}
+
+model Blog {
+  id       String    @id @default(uuid())
+  likes    Int
+  title    String
+  content  String
+  author   User      @relation(fields: [userId], references: [id])
+  userId   String
+  BlogTags BlogTag[]
+}
+
+model BlogTag {
+  id     String @id @default(uuid())
+  tag    String @unique
+  blog   Blog   @relation(fields: [blogId], references: [id])
+  blogId String
+}
+
+model BuildingPicture {
+  id         String   @id @default(uuid())
+  imageKey   String
+  building   Building @relation(fields: [buildingId], references: [id])
+  buildingId String
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  expiresAt DateTime @default(dbgenerated("CURRENT_TIMESTAMP + INTERVAL '7 days'"))
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+}
