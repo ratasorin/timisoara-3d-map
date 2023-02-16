@@ -27,9 +27,7 @@ const Sidebar = () => {
   );
 
   const buildings = buildingResponse.data;
-  if (!buildings) return null;
-
-  if (!sidebarOpen) return null;
+  if (!buildings || !sidebarOpen) return null;
   return (
     <div className="absolute top-0 left-0 h-full w-96 rounded-tr-lg rounded-br-lg bg-white shadow-lg">
       {buildings.map((building) => (

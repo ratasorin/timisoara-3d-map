@@ -1,6 +1,6 @@
 import { Form } from "@remix-run/react";
 import { useAtom } from "jotai";
-import { MdOutlineMenu, MdOutlineSearch } from "react-icons/md";
+import { MdOutlineMenu, MdOutlineSearch, MdClose } from "react-icons/md";
 import { sidebarOpenAtom } from "../sidebar/context/sidebar-open";
 
 const Navigation = () => {
@@ -16,7 +16,11 @@ const Navigation = () => {
             setSidebarOpen(!sidebarOpen);
           }}
         >
-          <MdOutlineMenu className="text-3xl" />
+          {sidebarOpen ? (
+            <MdClose className="text-3xl"></MdClose>
+          ) : (
+            <MdOutlineMenu className="text-3xl" />
+          )}
         </button>
         <Form className="flex items-center">
           <input className="py-2 px-4" name="building-name" />
