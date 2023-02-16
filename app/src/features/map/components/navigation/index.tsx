@@ -1,25 +1,31 @@
-import { Form } from "@remix-run/react";
-import { useAtom } from "jotai";
+import { Form, useLocation, useNavigate } from "@remix-run/react";
+import { useMemo } from "react";
 import { MdOutlineMenu, MdOutlineSearch, MdClose } from "react-icons/md";
-import { sidebarOpenAtom } from "../sidebar/context/sidebar-open";
 
 const Navigation = () => {
-  const [sidebarOpen, setSidebarOpen] = useAtom(sidebarOpenAtom);
+  const location = useLocation();
+  const buildingSearchQuery = useMemo(
+    () => new URLSearchParams(location.search).get("building-name"),
+    [location]
+  );
+  const navigate = useNavigate();
 
   return (
-    <div className="absolute top-0 left-0 z-10 flex w-full justify-end p-4">
-      <div className=" flex justify-center rounded-md bg-white py-2 px-4 shadow-md">
-        <button
-          type="submit"
-          className="bg-white px-2"
-          onClick={() => {
-            setSidebarOpen(!sidebarOpen);
-          }}
-        >
-          {sidebarOpen ? (
-            <MdClose className="text-3xl"></MdClose>
+    <div className="absolute top-0 left-0 z-10 p-4 font-mono">
+      <div className=" flex justify-center rounded-md bg-white py-2 px-4 shadow-lg">
+        <button type="submit" className="bg-white px-2">
+          {buildingSearchQuery || buildingSearchQuery === "" ? (
+            <MdClose
+              className="text-3xl"
+              onClick={() => navigate("")}
+            ></MdClose>
           ) : (
-            <MdOutlineMenu className="text-3xl" />
+            <MdOutlineMenu
+              className="text-3xl"
+              onClick={() =>
+                navigate(`?building-name=${buildingSearchQuery || ""}`)
+              }
+            />
           )}
         </button>
         <Form className="flex items-center">
