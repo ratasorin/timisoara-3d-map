@@ -5,3 +5,5 @@ export const CHURCHES = [
   "Biserica Romano-Catolică din Elisabetin",
   "Catedrala Mitropolitană Ortodoxă",
 ];
+export const BUILDING_LAYER_URL =
+  "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/buildingsRomania_3857/FeatureServer";

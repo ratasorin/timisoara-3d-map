@@ -1,24 +1,20 @@
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import { PORTAL_ID } from "../constants";
 import { BUILDINGS_QUERY } from "../utils/build-query";
 import type Graphic from "@arcgis/core/Graphic";
 import type Circle from "@arcgis/core/geometry/Circle";
 import { buildingRenderer } from "../render/buildings";
-
-type SelectedBuilding = Graphic;
+import { BUILDING_LAYER_URL } from "../constants";
 
 export const buildingsLayer = new FeatureLayer({
   id: "buildings",
-  portalItem: {
-    id: PORTAL_ID,
-  },
+  url: BUILDING_LAYER_URL,
   labelsVisible: false,
   opacity: 1,
   definitionExpression: BUILDINGS_QUERY,
   renderer: buildingRenderer,
   popupTemplate: {
     title: "{NAME}",
-    content: async (building: SelectedBuilding) => {
+    content: async (building: Graphic) => {
       const buildingName = building.attributes.name as string;
       // return fetch(`/api/church-info/${monument}`).then(async (r) => {
       //   const response = (await r.json()) as ServerResponse<ChurchInfo>;
