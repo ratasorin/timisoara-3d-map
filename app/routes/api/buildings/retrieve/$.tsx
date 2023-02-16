@@ -23,7 +23,5 @@ export const loader: LoaderFunction = async ({ params }) => {
     },
   });
 
-  const allBuildings = await prisma.building.findMany({});
-
   return json(buildings);
 };
