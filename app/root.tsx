@@ -8,6 +8,8 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import tailwindStylesheetUrl from "./styles/tailwind.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Provider } from "jotai";
 
 export const links: LinksFunction = () => {
   return [
@@ -25,6 +27,8 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+const queryClient = new QueryClient();
+
 export default function App() {
   return (
     <html lang="en" className="h-full">
@@ -32,12 +36,16 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="h-full">
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
+      <QueryClientProvider client={queryClient}>
+        <Provider>
+          <body className="h-full">
+            <Outlet />
+            <ScrollRestoration />
+            <Scripts />
+            <LiveReload />
+          </body>
+        </Provider>
+      </QueryClientProvider>
     </html>
   );
 }

@@ -1,7 +1,8 @@
 import { ClientOnly } from "~/src/utils/client-only";
 import Fallback from "library/map/components/fallback";
 import type { ShouldRevalidateFunction } from "react-router";
-import { Outlet } from "react-router";
+import Navigation from "~/src/features/map/components/navigation";
+import Sidebar from "~/src/features/map/components/sidebar";
 // import { lazy } from "react";
 // const ClientMap = lazy(() => import("library/map"));
 
@@ -17,7 +18,8 @@ const Map = () => {
           <span className="rounded-md bg-white p-2">Map replacement</span>
         </div>
       </ClientOnly>
-      <Outlet />
+      <Navigation />
+      <Sidebar />
     </>
   );
 };
