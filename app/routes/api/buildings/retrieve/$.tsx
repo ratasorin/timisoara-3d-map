@@ -3,8 +3,7 @@ import { json } from "@remix-run/server-runtime";
 import { prisma } from "prisma";
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const buildingName = params["building_name"] || "";
-  console.log(buildingName);
+  const buildingName = params["*"] || "";
   const buildings = await prisma.building.findMany({
     where: {
       OR: [
@@ -25,7 +24,6 @@ export const loader: LoaderFunction = async ({ params }) => {
   });
 
   const allBuildings = await prisma.building.findMany({});
-  console.log({ buildings, allBuildings });
 
   return json(buildings);
 };
