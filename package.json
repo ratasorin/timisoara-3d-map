@@ -8,6 +8,8 @@
     "build:remix": "remix build",
     "build:server": "esbuild --platform=node --format=cjs ./server.ts --outdir=build --bundle",
     "dev": "run-p dev:*",
+    "hmr": "npx remix-vite",
+    "dev:hmr": "npm-run-all --parallel dev:css hmr",
     "dev:build": "cross-env NODE_ENV=development npm run build:server -- --watch",
     "dev:css": "cross-env NODE_ENV=development npm run generate:css -- --watch",
     "dev:remix": "cross-env NODE_ENV=development remix watch",
@@ -42,6 +44,7 @@
     "@remix-run/react": "^1.11.1",
     "@remix-run/server-runtime": "^1.11.1",
     "@tanstack/react-query": "^4.24.4",
+    "@types/react-slick": "^0.23.10",
     "aws-sdk": "^2.1316.0",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
@@ -55,6 +58,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
+    "react-slick": "^0.29.0",
+    "remix-vite": "^0.3.1",
     "tiny-invariant": "^1.3.1"
   },
   "devDependencies": {
