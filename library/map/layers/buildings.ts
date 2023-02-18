@@ -16,7 +16,7 @@ export const buildingsLayer = new FeatureLayer({
     title: "{NAME}",
     content: async (building: Graphic) => {
       const buildingName = building.attributes.name as string;
-      // return fetch(`/api/church-info/${monument}`).then(async (r) => {
+      // return fetch(`/api/building-info/${monument}`).then(async (r) => {
       //   const response = (await r.json()) as ServerResponse<ChurchInfo>;
       //   if (response.error) {
       //     openPopup("success-popup", {
@@ -24,10 +24,10 @@ export const buildingsLayer = new FeatureLayer({
       //       type: "Error",
       //     } as PopupBuilder);
       //     return "";
-      //   } else return `<p>${response.payload?.churchDescription}</p>`;
+      //   } else return `<p>${response.payload?.buildingDescription}</p>`;
       // });
 
-      // fetch the church info;
+      // fetch the building info;
     },
   },
 });
@@ -39,11 +39,22 @@ query.returnGeometry = true;
 export const buildings = buildingsLayer
   .queryFeatures(query)
   .then((response) => {
-    return response.features.map((church) => {
+    return response.features.map((building) => {
       return {
-        name: church.attributes.name as string,
-        lat: (church.geometry as Circle).centroid.latitude,
-        long: (church.geometry as Circle).centroid.longitude,
+        name: building.attributes.name as string,
+        lat: (building.geometry as Circle).centroid.latitude,
+        long: (building.geometry as Circle).centroid.longitude,
       };
     });
   });
+
+export const getBuildingCoordinates = async (buildingOsmId: string) => {
+  const q = buildingsLayer.createQuery();
+  q.where = `osm_id=${buildingOsmId}`;
+  q.returnGeometry = true;
+
+  const building = await buildingsLayer.queryFeatures(q);
+  const circle = building.features[0].geometry as Circle;
+  console.log({ circle });
+  return { x: circle.centroid.longitude, y: circle.centroid.latitude };
+};

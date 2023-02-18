@@ -7,7 +7,12 @@ const renderBuilding = (heading: number, href: string, height: number) => {
     symbolLayers: [
       {
         type: "object",
-        anchor: "origin",
+        anchor: "relative",
+        anchorPosition: {
+          x: 0,
+          y: 0,
+          z: -0.5,
+        },
         height,
         heading,
         resource: {
