@@ -28,6 +28,7 @@ export const retrieveImage = async (imageKey: string) => {
   try {
     return await retrieveS3StoredImage(imageKey);
   } catch (error: any) {
+    console.error(error);
     return await retrieveFallbackImage();
   }
 };
