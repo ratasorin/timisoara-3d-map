@@ -18,6 +18,14 @@ export const links: LinksFunction = () => {
       rel: "stylesheet",
       href: "https://js.arcgis.com/4.25/@arcgis/core/assets/esri/themes/dark/main.css",
     },
+    {
+      rel: "stylesheet",
+      href: "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css",
+    },
+    {
+      rel: "stylesheet",
+      href: "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css",
+    },
   ];
 };
 
