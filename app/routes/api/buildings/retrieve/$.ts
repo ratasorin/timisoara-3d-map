@@ -1,6 +1,6 @@
 import type { LoaderFunction } from "@remix-run/server-runtime";
 import { json } from "@remix-run/server-runtime";
-import { prisma } from "prisma";
+import { prisma } from "~/db.server";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const buildingName = params["*"] || "";

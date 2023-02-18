@@ -1,5 +1,5 @@
 import { Buildings } from "library/map/assets";
-import { prisma } from "prisma";
+import { prisma } from "~/db.server";
 
 const seed = async () => {
   const { id: userId } = await prisma.user.create({
