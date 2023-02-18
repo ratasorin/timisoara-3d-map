@@ -1,5 +1,5 @@
 import { Readable } from "stream";
-import { bucket, s3 } from "../config";
+import { bucket, s3 } from "..";
 
 export const retrieveS3StoredImage = async (imageKey: string) => {
   const { Body } = await s3

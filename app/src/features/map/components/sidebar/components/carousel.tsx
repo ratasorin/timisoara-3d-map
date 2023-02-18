@@ -1,13 +1,13 @@
 import Slider from "react-slick";
 import type { FunctionComponent, MouseEventHandler } from "react";
-import { FiArrowRightCircle, FiArrowLeftCircle } from "react-icons/fi";
+import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 
 const LeftArrow: FunctionComponent<{ onClick: MouseEventHandler }> = ({
   onClick,
 }) => {
   return (
-    <FiArrowLeftCircle
-      className="absolute top-1/2 z-10 ml-2 -translate-y-1/2 rounded-full bg-white text-3xl text-black hover:cursor-pointer "
+    <FiArrowLeft
+      className="absolute left-0 top-1/2 z-10 ml-3 -translate-y-1/2 rounded-full bg-slate-100 text-2xl text-black hover:cursor-pointer "
       onClick={(e) => {
         console.log("CLICK");
         onClick(e);
@@ -20,8 +20,8 @@ const RightArrow: FunctionComponent<{ onClick: MouseEventHandler }> = ({
   onClick,
 }) => {
   return (
-    <FiArrowRightCircle
-      className="absolute top-1/2 right-0 z-10 mr-2 -translate-y-1/2 rounded-full bg-white text-3xl text-black hover:cursor-pointer"
+    <FiArrowRight
+      className="absolute top-1/2 right-0 z-10 mr-3 -translate-y-1/2 rounded-full bg-slate-100 text-2xl text-black hover:cursor-pointer"
       onClick={(e) => {
         console.log("CLICK");
         onClick(e);
@@ -44,7 +44,7 @@ const Carousel: FunctionComponent<{
       prevArrow={<LeftArrow />}
       //@ts-ignore
       nextArrow={<RightArrow />}
-      className="relative my-2 min-h-[10rem] w-full rounded-md bg-gray-200"
+      className="relative my-2 min-h-[10rem] w-full rounded-md bg-slate-100"
     >
       {images.map((imageKey) => (
         <div className="relative w-full pt-2" key={imageKey}>

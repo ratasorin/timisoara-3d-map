@@ -38,7 +38,8 @@
   "dependencies": {
     "@arcgis/core": "^4.25.5",
     "@prisma/client": "^4.10.0",
-    "@radix-ui/primitive": "^1.0.0",
+    "@radix-ui/react-dialog": "^1.0.2",
+    "@radix-ui/react-separator": "^1.0.1",
     "@remix-run/express": "^1.11.1",
     "@remix-run/node": "^1.11.1",
     "@remix-run/react": "^1.11.1",

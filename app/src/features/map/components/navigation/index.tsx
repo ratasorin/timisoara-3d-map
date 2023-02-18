@@ -12,7 +12,7 @@ const Navigation = () => {
 
   return (
     <div className="absolute top-0 left-0 z-10 p-4 font-mono">
-      <div className=" flex justify-center rounded-md bg-white py-2 px-4 shadow-lg">
+      <div className=" flex justify-center rounded-md bg-white py-2 px-4 shadow-md">
         <button type="submit" className="bg-white px-2">
           {buildingSearchQuery || buildingSearchQuery === "" ? (
             <MdClose
