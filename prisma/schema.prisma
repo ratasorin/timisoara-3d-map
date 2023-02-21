@@ -8,15 +8,15 @@ datasource db {
 }
 
 model User {
-  id            String      @id @default(uuid())
-  password      String
-  email         String      @unique
-  name          String      @unique
-  picture       UserPicture @relation(fields: [userPictureId], references: [id])
-  Session       Session[]
-  userPictureId String      @unique
-  Blog          Blog[]
-  Building      Building[]
+  id        String       @id @default(uuid())
+  password  String
+  email     String       @unique
+  name      String       @unique
+  picture   UserPicture? @relation(fields: [pictureId], references: [id])
+  Session   Session[]
+  pictureId String?      @unique
+  Blog      Blog[]
+  Building  Building[]
 }
 
 model UserPicture {
