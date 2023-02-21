@@ -6,13 +6,15 @@ const LeftArrow: FunctionComponent<{ onClick: MouseEventHandler }> = ({
   onClick,
 }) => {
   return (
-    <FiArrowLeft
-      className="absolute left-0 top-1/2 z-10 ml-3 -translate-y-1/2 rounded-full bg-slate-100 text-2xl text-black hover:cursor-pointer "
+    <button
       onClick={(e) => {
         console.log("CLICK");
         onClick(e);
       }}
-    />
+      className="absolute top-1/2 left-0 z-10 mr-3 -translate-y-1/2 rounded-full bg-white p-1 hover:cursor-pointer hover:bg-zinc-100"
+    >
+      <FiArrowLeft className="text-2xl text-black" />
+    </button>
   );
 };
 
@@ -20,13 +22,15 @@ const RightArrow: FunctionComponent<{ onClick: MouseEventHandler }> = ({
   onClick,
 }) => {
   return (
-    <FiArrowRight
-      className="absolute top-1/2 right-0 z-10 mr-3 -translate-y-1/2 rounded-full bg-slate-100 text-2xl text-black hover:cursor-pointer"
+    <button
       onClick={(e) => {
         console.log("CLICK");
         onClick(e);
       }}
-    />
+      className="absolute top-1/2 right-0 z-10 mr-3 -translate-y-1/2 rounded-full bg-white p-1 hover:cursor-pointer hover:bg-zinc-100"
+    >
+      <FiArrowRight className="text-2xl text-black" />
+    </button>
   );
 };
 
@@ -44,7 +48,7 @@ const Carousel: FunctionComponent<{
       prevArrow={<LeftArrow />}
       //@ts-ignore
       nextArrow={<RightArrow />}
-      className="relative my-2 min-h-[10rem] w-full rounded-md bg-slate-100"
+      className="relative -z-0 my-2 min-h-[10rem] w-full rounded-lg"
     >
       {images.map((imageKey) => (
         <div className="relative w-full pt-2" key={imageKey}>

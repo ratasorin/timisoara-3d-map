@@ -11,27 +11,26 @@ const Navigation = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="absolute top-0 left-0 z-10 p-4 font-mono">
-      <div className=" flex justify-center rounded-md bg-white py-2 px-4 shadow-md">
-        <button type="submit" className="bg-white px-2">
+    <div className="absolute inset-0 z-20 max-h-max max-w-sm p-4 font-mono">
+      <div className="mx-auto flex justify-center rounded-md bg-white py-2 px-4 shadow-md">
+        <button
+          type="submit"
+          onClick={() => {
+            if (buildingSearchQuery || buildingSearchQuery === "") navigate("");
+            else navigate(`?building-name=${buildingSearchQuery || ""}`);
+          }}
+          className="mr-1 rounded-full bg-white p-1"
+        >
           {buildingSearchQuery || buildingSearchQuery === "" ? (
-            <MdClose
-              className="text-3xl"
-              onClick={() => navigate("")}
-            ></MdClose>
+            <MdClose className="h-7 w-7"></MdClose>
           ) : (
-            <MdOutlineMenu
-              className="text-3xl"
-              onClick={() =>
-                navigate(`?building-name=${buildingSearchQuery || ""}`)
-              }
-            />
+            <MdOutlineMenu className="h-7 w-7" />
           )}
         </button>
-        <Form className="flex items-center">
-          <input className="py-2 px-4" name="building-name" />
-          <button type="submit" className="bg-white px-2">
-            <MdOutlineSearch className="text-3xl" />
+        <Form className="flex flex-1 items-center">
+          <input className="flex-1 p-1" name="building-name" />
+          <button type="submit" className="ml-1 rounded-full bg-white p-1">
+            <MdOutlineSearch className="h-7 w-7" />
           </button>
         </Form>
       </div>
