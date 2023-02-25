@@ -12,7 +12,7 @@ import {
   buildingIdAtom,
 } from "../../../information-modal/context";
 import type { QueriedBuildings } from "~/routes/api/buildings/read/$";
-import { useQuery } from "@tanstack/react-query";
+import { Link } from "@remix-run/react";
 
 type Building = QueriedBuildings[number];
 
@@ -57,7 +57,9 @@ const Header: FunctionComponent<{
           </DropdownMenu.Item>
 
           <DropdownMenu.Item className="flex flex-row items-center justify-between rounded-lg p-2 font-mono text-base font-medium hover:cursor-pointer hover:bg-zinc-100 hover:outline-none">
-            <span className="mx-4 flex-1">Citiți bloguri</span>
+            <Link to="/blog" className="mx-4 flex-1">
+              Citiți bloguri
+            </Link>
             <AiFillRead className="h-6 w-6 text-blue-600" />
           </DropdownMenu.Item>
         </DropdownMenu.Content>

@@ -1,0 +1,123 @@
+.ImageNode__contentEditable {
+  min-height: 20px;
+  border: 0px;
+  resize: none;
+  cursor: text;
+  caret-color: rgb(5, 5, 5);
+  display: block;
+  position: relative;
+  tab-size: 1;
+  outline: 0px;
+  padding: 10px;
+  user-select: text;
+  font-size: 12px;
+  width: calc(100% - 20px);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.ImageNode__placeholder {
+  font-size: 12px;
+  color: #888;
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  top: 10px;
+  left: 10px;
+  user-select: none;
+  white-space: nowrap;
+  display: inline-block;
+  pointer-events: none;
+}
+
+.image-control-wrapper--resizing {
+  touch-action: none;
+}
+
+.editor-image {
+  cursor: default;
+  position: relative;
+  display: flex;
+  user-select: none;
+  max-width: 100%;
+  border-radius: 1rem;
+}
+
+.editor-image img {
+  max-width: 100%;
+  cursor: default;
+  border-radius: 10px;
+}
+
+.editor-image img.focused {
+  outline: 4px solid rgb(48, 96, 255);
+  user-select: none;
+}
+
+.editor-image img.focused.draggable {
+  cursor: grab;
+}
+
+.editor-image img.focused.draggable:active {
+  cursor: grabbing;
+}
+
+.editor-image .image-resizer {
+  width: 100%;
+
+  --resizer-width: 25px;
+  --resizer-height: 25px;
+  width: var(--resizer-width);
+  height: var(--resizer-height);
+  border-radius: 6px;
+  position: absolute;
+  background-color: rgb(60, 132, 244);
+}
+
+.editor-image .image-resizer.image-resizer-n {
+  top: calc(var(--resizer-height) * -1 / 2);
+  left: calc(50% - calc(var(--resizer-width) / 2));
+  cursor: n-resize;
+}
+
+.editor-image .image-resizer.image-resizer-ne {
+  top: calc(var(--resizer-height) * -1 / 2);
+  right: calc(var(--resizer-width) * -1 / 2);
+  cursor: ne-resize;
+}
+
+.editor-image .image-resizer.image-resizer-e {
+  bottom: calc(50% - calc(var(--resizer-height) / 2));
+  right: calc(var(--resizer-width) * -1 / 2);
+  cursor: e-resize;
+}
+
+.editor-image .image-resizer.image-resizer-se {
+  bottom: calc(var(--resizer-height) * -1 / 2);
+  right: calc(var(--resizer-width) * -1 / 2);
+  cursor: nwse-resize;
+}
+
+.editor-image .image-resizer.image-resizer-s {
+  bottom: calc(var(--resizer-height) * -1 / 2);
+  left: calc(50% - calc(var(--resizer-width) / 2));
+  cursor: s-resize;
+}
+
+.editor-image .image-resizer.image-resizer-sw {
+  bottom: calc(var(--resizer-height) * -1 / 2);
+  left: calc(var(--resizer-width) * -1 / 2);
+  cursor: sw-resize;
+}
+
+.editor-image .image-resizer.image-resizer-w {
+  bottom: calc(50% - calc(var(--resizer-height) / 2));
+  left: calc(var(--resizer-width) * -1 / 2);
+  cursor: w-resize;
+}
+
+.editor-image .image-resizer.image-resizer-nw {
+  top: calc(var(--resizer-height) * -1 / 2);
+  left: calc(var(--resizer-width) * -1 / 2);
+  cursor: nw-resize;
+}

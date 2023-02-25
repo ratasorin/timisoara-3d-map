@@ -1,5 +1,4 @@
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
-import type { ShouldRevalidateFunction } from "@remix-run/react";
 import {
   Links,
   LiveReload,
@@ -10,6 +9,7 @@ import {
 } from "@remix-run/react";
 import tailwind from "./styles/tailwind.css";
 import scrollbar from "./styles/scrollbar.css";
+import lexicalImage from "library/lexical/components/image/index.css";
 import focus from "./styles/focus.css";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "jotai";
@@ -38,6 +38,18 @@ export const links: LinksFunction = () => {
       rel: "stylesheet",
       href: focus,
     },
+    {
+      rel: "stylesheet",
+      href: "//cdn.quilljs.com/1.3.6/quill.bubble.css",
+    },
+    {
+      rel: "stylesheet",
+      href: "https://unpkg.com/react-quill@1.3.3/dist/quill.snow.css",
+    },
+    {
+      rel: "stylesheet",
+      href: lexicalImage,
+    },
   ];
 };
 
@@ -60,6 +72,7 @@ export default function App() {
             <Outlet />
             <ScrollRestoration />
             <Scripts />
+            <script> const global = globalThis; </script>
             <LiveReload />
           </body>
         </Provider>
