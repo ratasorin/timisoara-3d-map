@@ -28,7 +28,7 @@ const Navigation = () => {
           )}
         </button>
         <Form className="flex flex-1 items-center">
-          <input className="flex-1 p-1" name="building-name" />
+          <input className="flex-1 px-1 py-2" name="building-name" />
           <button type="submit" className="ml-1 rounded-full bg-white p-1">
             <MdOutlineSearch className="h-7 w-7" />
           </button>

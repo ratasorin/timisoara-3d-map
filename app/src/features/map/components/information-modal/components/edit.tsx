@@ -2,7 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { editModalOpenAtom, infoModalOpenAtom } from "../context";
 import { useAtom, useSetAtom } from "jotai";
 import { MdClose } from "react-icons/md";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { Form } from "@remix-run/react";
 import { queryClient } from "~/src/react-query";
 import type { FunctionComponent } from "react";

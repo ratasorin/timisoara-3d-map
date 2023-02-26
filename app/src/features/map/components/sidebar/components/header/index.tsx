@@ -26,13 +26,7 @@ const Header: FunctionComponent<{
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
-        <button
-          className="flex w-full flex-row items-center justify-between rounded-lg p-2 font-bold hover:bg-zinc-100"
-          onClick={async () => {
-            const { x, y } = await getBuildingCoordinates(building.osmId);
-            setCenterCoordinates({ x, y });
-          }}
-        >
+        <button className="flex w-full flex-row items-center justify-between rounded-lg p-2 font-bold hover:bg-zinc-100">
           <span className="mx-4 flex-1 text-left">{building.name}</span>
           <MdArrowForwardIos className="text-xl" />
         </button>
@@ -40,7 +34,13 @@ const Header: FunctionComponent<{
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content className="w-80 rounded-lg bg-white p-2 shadow-md will-change-[opacity,transform] data-[side=top]:animate-slide-down-and-fade data-[side=right]:animate-slide-left-and-fade data-[side=bottom]:animate-slide-up-and-fade data-[side=left]:animate-slide-right-and-fade">
-          <DropdownMenu.Item className="flex flex-row items-center justify-between rounded-lg p-2 font-mono text-base font-medium hover:cursor-pointer hover:bg-zinc-100 hover:outline-none">
+          <DropdownMenu.Item
+            onClick={async () => {
+              const { x, y } = await getBuildingCoordinates(building.osmId);
+              setCenterCoordinates({ x, y });
+            }}
+            className="flex flex-row items-center justify-between rounded-lg p-2 font-mono text-base font-medium hover:cursor-pointer hover:bg-zinc-100 hover:outline-none"
+          >
             <span className="mx-4 flex-1">Vedeți pe mapă</span>
             <FaMapMarkerAlt className="h-6 w-6 text-blue-600" />
           </DropdownMenu.Item>
@@ -57,7 +57,7 @@ const Header: FunctionComponent<{
           </DropdownMenu.Item>
 
           <DropdownMenu.Item className="flex flex-row items-center justify-between rounded-lg p-2 font-mono text-base font-medium hover:cursor-pointer hover:bg-zinc-100 hover:outline-none">
-            <Link to="/blog" className="mx-4 flex-1">
+            <Link to="/blogs" className="mx-4 flex-1">
               Citiți bloguri
             </Link>
             <AiFillRead className="h-6 w-6 text-blue-600" />

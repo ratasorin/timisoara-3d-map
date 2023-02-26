@@ -11,6 +11,7 @@ export const informationLayer = new FeatureLayer({
   featureReduction: {
     type: "selection",
   },
+
   screenSizePerspectiveEnabled: true,
   definitionExpression: BUILDINGS_QUERY,
   elevationInfo: {

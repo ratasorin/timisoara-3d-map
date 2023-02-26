@@ -1,10 +1,9 @@
-import { useLoaderData, useNavigate, useNavigation } from "@remix-run/react";
-import type { LoaderArgs } from "@remix-run/server-runtime";
+import { useLoaderData, useNavigate } from "@remix-run/react";
 import { IoMdHeart } from "react-icons/io";
 import { prisma } from "~/db.server";
 import Avatar from "~/src/components/avatar";
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async () => {
   const blogs = await prisma.blog.findMany({
     include: {
       author: { include: { picture: true } },
@@ -28,7 +27,7 @@ const Blogs = () => {
           key={blog.id}
           className="mx-auto mb-4 flex w-full max-w-sm flex-col rounded-lg border-4 border-zinc-200 bg-zinc-100 p-3"
         >
-          <h1 className="overflow-hidden text-ellipsis text-2xl font-black hover:text-blue-500">
+          <h1 className="w-full overflow-hidden text-ellipsis text-left text-2xl font-black hover:text-blue-500">
             {blog.title}
           </h1>
           <p className="mt-1 w-full overflow-hidden text-ellipsis text-left text-sm">

@@ -1,6 +1,6 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-import { useLoaderData, useSubmit } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { prisma } from "~/db.server";
 import { redirectToAuthWithContext } from "~/src/server/redirect.server";
 import { getSessionFromCookie } from "~/src/server/session-cookies.server";
@@ -45,7 +45,7 @@ export const loader = async ({ request, params }: LoaderArgs) => {
 };
 
 const Blog = () => {
-  let { blog, readonly, user } = useLoaderData<typeof loader>();
+  let { blog, readonly } = useLoaderData<typeof loader>();
   const [likes, setLikes] = useState(blog.likes);
   const [addedLikes, setAddedLikes] = useState(0);
 
@@ -81,7 +81,7 @@ const Blog = () => {
           </div>
         </div>
         <span className="my-2"></span>
-        <div className="flex flex-row items-center">
+        <div className="flex w-full flex-row items-center justify-between">
           <button
             onClick={() => {
               setAddedLikes(addedLikes + 1);
@@ -91,12 +91,16 @@ const Blog = () => {
             className="mr-2 inline rounded-lg bg-red-500 px-2 py-1 text-white hover:bg-red-400"
           >
             Like
+            <IoMdHeart className="ml-1 inline text-2xl text-white" />
           </button>
-          <span className="text-2xl">{likes}</span>
-          <IoMdHeart className="ml-1 inline text-2xl text-red-500" />
+
+          <span className="text-2xl">
+            {likes}
+            <IoMdHeart className="ml-1 inline text-red-500" />
+          </span>
         </div>
         <span className="my-1"></span>
-        <h1 className="overflow-hidden text-ellipsis text-2xl font-bold">
+        <h1 className="overflow-hidden text-ellipsis p-1 text-2xl font-bold">
           {blog.title}
         </h1>
         <span className="my-1"></span>
