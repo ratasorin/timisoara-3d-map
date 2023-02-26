@@ -57,11 +57,7 @@ const Register = () => {
   return (
     <div className="flex min-h-screen flex-col justify-center bg-gray-100 py-12 px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <img
-          className="mx-auto h-20 w-auto"
-          src="/public/user.png"
-          alt="Workflow"
-        />
+        <img className="mx-auto h-20 w-auto" src="/user.png" alt="Workflow" />
         <h2 className="mt-6 text-center text-3xl font-extrabold text-zinc-700">
           Înregistrează-te"
         </h2>

@@ -89,7 +89,7 @@ const Auth = () => {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
           className="mx-auto h-24 w-auto"
-          src="/public/insurance.png"
+          src="/insurance.png"
           alt="Workflow"
         />
         <h2 className="mt-6 text-center text-3xl font-extrabold text-zinc-700">

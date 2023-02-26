@@ -1,5 +1,3 @@
-const index = () => {
-  return <div>index</div>;
-};
+import { redirect } from "@remix-run/server-runtime";
 
-export default index;
+export const loader = () => redirect("/map");

@@ -4,69 +4,43 @@ import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
-import { HeadingNode, QuoteNode } from "@lexical/rich-text";
-import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
-import { ListItemNode, ListNode } from "@lexical/list";
-import { CodeHighlightNode, CodeNode } from "@lexical/code";
-import { AutoLinkNode, LinkNode } from "@lexical/link";
+import { AutoLinkPlugin } from "@lexical/react/LexicalAutoLinkPlugin";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
 import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
 import { TRANSFORMERS } from "@lexical/markdown";
-import { StyledLink } from "./nodes/link";
 import { MATCHERS } from "./utils/matchers";
-import { AutoLinkPlugin } from "@lexical/react/LexicalAutoLinkPlugin";
-import { ImageNode } from "library/lexical/nodes/image";
 import ProductionImagesPlugin from "./plugins/production-image";
 import DragImagesPlugin from "library/lexical/plugins/image";
-import { HashtagNode } from "@lexical/hashtag";
 import { Toolbar } from "./components/toolbar";
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
+import { useSetAtom } from "jotai";
+import { editorStateAtom } from "./context";
+import { $getRoot, $getTextContent, EditorState } from "lexical";
+import { ClientOnly } from "~/src/utils/client-only";
+import type { FunctionComponent } from "react";
+import { editorConfig } from "./config";
 
-export default function Editor() {
+interface EditorProps {
+  readonly: boolean;
+  editorState: EditorState | undefined;
+}
+
+function Editor({ editorState, readonly }: EditorProps) {
+  const setEditorState = useSetAtom(editorStateAtom);
   return (
     <LexicalComposer
       initialConfig={{
+        ...editorConfig,
+        editorState: editorState,
+        editable: !readonly,
         namespace: "editor",
-        onError(error: any) {
-          throw error;
+        onError: (error) => {
+          console.error(error);
         },
-        theme: {
-          root: "p-4 border-zinc-400 border-2 rounded focus:outline-none h-full focus-visible:border-black root overflow-y-scroll",
-          link: "cursor-pointer",
-          text: {
-            bold: "font-semibold",
-            underline: "underline",
-            italic: "italic",
-            strikethrough: "line-through",
-            underlineStrikethrough: "underlined-line-through",
-          },
-        },
-        nodes: [
-          HeadingNode,
-          ListNode,
-          ListItemNode,
-          QuoteNode,
-          CodeNode,
-          CodeHighlightNode,
-          TableNode,
-          TableCellNode,
-          TableRowNode,
-          StyledLink,
-          HashtagNode,
-          LinkNode,
-          ImageNode,
-          {
-            replace: AutoLinkNode,
-            with: (node: AutoLinkNode) =>
-              new StyledLink(node.__url, {
-                rel: node.__rel,
-                target: node.__target,
-              }),
-          },
-        ],
       }}
     >
       <div className="flex h-full flex-col font-mono">
-        <Toolbar />
+        {!readonly && <Toolbar />}
         <RichTextPlugin
           contentEditable={<ContentEditable className="h-full" />}
           placeholder={<div />}
@@ -80,7 +54,33 @@ export default function Editor() {
         <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
         <ProductionImagesPlugin />
         <DragImagesPlugin />
+        <OnChangePlugin
+          onChange={(editorState, editor) => {
+            editorState.read(() => {
+              const root = $getRoot();
+              const text = root.getTextContent();
+              console.log({ text });
+              setEditorState({
+                richContent: editorState.toJSON(),
+                textContent: text,
+              });
+            });
+          }}
+        />
       </div>
     </LexicalComposer>
   );
 }
+
+export const ClientEditor: FunctionComponent<EditorProps> = ({
+  editorState,
+  readonly,
+}) => {
+  return (
+    <ClientOnly>
+      <Editor editorState={editorState} readonly={readonly} />
+    </ClientOnly>
+  );
+};
+
+export default ClientEditor;

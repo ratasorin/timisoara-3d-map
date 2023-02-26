@@ -10,7 +10,7 @@ const Underline = () => {
       onClick={() => {
         editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
       }}
-      className="rounded-lg bg-zinc-100 p-1 hover:bg-zinc-200"
+      className="mx-2 rounded-lg bg-zinc-100 p-1 hover:bg-zinc-200"
       type="button"
     >
       <MdFormatUnderlined className="h-7 w-7" />

@@ -59,7 +59,7 @@ const Bold = () => {
           inputRef.current?.click();
         }}
         type="button"
-        className="ml-4 rounded-lg bg-zinc-100 p-1 hover:bg-zinc-200"
+        className="mx-2 rounded-lg bg-zinc-100 p-1 hover:bg-zinc-200"
       >
         <MdOutlineAddPhotoAlternate className="h-7 w-7" />
       </button>

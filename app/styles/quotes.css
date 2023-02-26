@@ -1,0 +1,24 @@
+/*blockquote p::before {
+  content: "\f095"; 
+  font-family: FontAwesome;
+  display: inline-block;
+  padding-right: 6px;
+  vertical-align: middle;
+  font-size: 180px;
+}*/
+
+code {
+  position: relative;
+  font-style: italic;
+  padding: 6px;
+}
+
+code::before {
+  color: #dfdfdf;
+  position: relative;
+  content: open-quote;
+  font-size: 8em;
+  line-height: 0;
+  margin-right: 0.1em;
+  bottom: -3rem;
+}

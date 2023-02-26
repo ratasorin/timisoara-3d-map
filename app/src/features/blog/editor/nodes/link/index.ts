@@ -1,3 +1,4 @@
+import type { SerializedAutoLinkNode } from "@lexical/link";
 import { AutoLinkNode } from "@lexical/link";
 import type { EditorConfig, LexicalNode } from "lexical";
 
@@ -11,6 +12,13 @@ export class StyledLink extends AutoLinkNode {
     const className = "text-blue-500 underline";
     a.classList.add(...className.split(" "));
     return a;
+  }
+
+  exportJSON() {
+    return {
+      ...super.exportJSON(),
+      type: "styled-link",
+    } as unknown as SerializedAutoLinkNode;
   }
 }
 

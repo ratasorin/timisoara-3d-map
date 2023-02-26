@@ -40,14 +40,6 @@ export const links: LinksFunction = () => {
     },
     {
       rel: "stylesheet",
-      href: "//cdn.quilljs.com/1.3.6/quill.bubble.css",
-    },
-    {
-      rel: "stylesheet",
-      href: "https://unpkg.com/react-quill@1.3.3/dist/quill.snow.css",
-    },
-    {
-      rel: "stylesheet",
       href: lexicalImage,
     },
   ];

@@ -75,30 +75,29 @@ const BuildingInformationModal: FunctionComponent<{
                     setIsInfoModalOpen(false);
                     setIsEditModalOpen(true);
                   }}
-                  className="rounded-lg px-4 py-3 font-mono text-sm hover:bg-zinc-100 disabled:bg-zinc-200 disabled:text-zinc-600 disabled:hover:cursor-pointer"
+                  className="rounded-lg px-4 py-3 font-mono text-sm hover:bg-zinc-100 disabled:bg-zinc-300 disabled:text-zinc-700 disabled:hover:cursor-pointer"
                   disabled={!user}
                 >
                   Editează informațiile
                 </button>
                 {!user && (
-                  <>
-                    <button
-                      onClick={() => {
-                        const redirectBackTo = new URLSearchParams();
-                        redirectBackTo.set(
-                          "redirect-back-to",
-                          location.pathname + location.search
-                        );
-                        navigate({
-                          pathname: "/auth",
-                          search: redirectBackTo.toString(),
-                        });
-                      }}
-                      className="mt-2 rounded-lg px-4 py-3 font-mono text-sm hover:bg-zinc-100"
-                    >
-                      Loghează-te
-                    </button>
-                  </>
+                  <button
+                    onClick={() => {
+                      const redirectBackTo = new URLSearchParams();
+                      redirectBackTo.set(
+                        "redirect-back-to",
+                        location.pathname + location.search
+                      );
+                      navigate({
+                        pathname: "/auth",
+                        search: redirectBackTo.toString(),
+                      });
+                    }}
+                    type="button"
+                    className="rounded-lg px-4 py-3 font-mono text-sm hover:bg-zinc-100"
+                  >
+                    Loghează-te
+                  </button>
                 )}
               </div>
             </div>

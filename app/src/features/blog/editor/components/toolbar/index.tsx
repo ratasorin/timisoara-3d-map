@@ -14,18 +14,18 @@ export const Toolbar = () => {
       <Italic />
       <Underline />
       <InsertImage />
-      <span className="ml-4 inline-block">
+      <span className="mx-2 inline-block">
         <button
           onClick={() => editor.dispatchCommand(UNDO_COMMAND, undefined)}
           type="button"
-          className="mr-2 rounded-lg bg-zinc-100 p-1 hover:bg-zinc-200"
+          className="rounded-lg bg-zinc-100 p-1 hover:bg-zinc-200"
         >
           <MdUndo className="h-7 w-7" />
         </button>
         <button
           type="button"
           onClick={() => editor.dispatchCommand(REDO_COMMAND, undefined)}
-          className="rounded-lg bg-zinc-100 p-1 hover:bg-zinc-200"
+          className="mx-2 rounded-lg bg-zinc-100 p-1 hover:bg-zinc-200"
         >
           <MdRedo className="h-7 w-7" />
         </button>

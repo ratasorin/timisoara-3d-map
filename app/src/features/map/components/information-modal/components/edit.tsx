@@ -1,18 +1,14 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import {
-  buildingIdAtom,
-  editModalOpenAtom,
-  infoModalOpenAtom,
-} from "../context";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
+import { editModalOpenAtom, infoModalOpenAtom } from "../context";
+import { useAtom, useSetAtom } from "jotai";
 import { MdClose } from "react-icons/md";
-import * as Avatar from "@radix-ui/react-avatar";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import type { QueriedUser } from "~/routes/api/users/read/current";
 import { Form } from "@remix-run/react";
 import { queryClient } from "~/src/react-query";
 import type { FunctionComponent } from "react";
 import type { QueriedBuildings } from "~/routes/api/buildings/read/$";
+import { useUser } from "~/src/hooks/user";
+import Avatar from "~/src/components/avatar";
 
 type Building = QueriedBuildings[number];
 
@@ -22,9 +18,7 @@ const BuildingInformationModal: FunctionComponent<{
   const setIsInfoModalOpen = useSetAtom(infoModalOpenAtom);
   const [isEditModalOpen, setIsEditModalOpen] = useAtom(editModalOpenAtom);
 
-  const { data: user } = useQuery<QueriedUser>(["user"], () =>
-    fetch("/api/users/read/current").then((r) => r.json())
-  );
+  const { user } = useUser();
 
   const updateDescription = useMutation(
     (form: FormData) =>
@@ -80,19 +74,10 @@ const BuildingInformationModal: FunctionComponent<{
             >
               <div className="flex flex-col">
                 <div className="flex flex-row">
-                  <Avatar.Root className="mr-3 inline-flex h-9 w-9 select-none items-center justify-center overflow-hidden rounded-full bg-zinc-200 align-middle">
-                    <Avatar.Image
-                      className="h-full w-full rounded-full object-cover"
-                      src={`http://localhost:3000/resources/${
-                        user.picture?.imageKey || ""
-                      }`}
-                      alt={user.name}
-                    />
-                    <Avatar.Fallback className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-zinc-100 text-lg font-medium">
-                      {user.name.slice(0, 2).toLocaleUpperCase()}
-                    </Avatar.Fallback>
-                  </Avatar.Root>
-
+                  <Avatar
+                    profilePictureKey={user.picture?.imageKey}
+                    username={user.name}
+                  />
                   <textarea
                     rows={10}
                     required
@@ -104,16 +89,16 @@ const BuildingInformationModal: FunctionComponent<{
                 <div className="mt-2 flex flex-row items-center justify-end ">
                   <button
                     type="submit"
-                    className="mr-4 rounded-lg bg-green-100 px-4 py-3 text-green-800 hover:bg-green-200"
+                    className="mr-4 rounded-lg bg-green-100 px-3 py-2 text-green-800 hover:bg-green-200"
                   >
-                    Salvează schimbările
+                    Salvează
                   </button>
                   <button
                     onClick={() => {
                       setIsInfoModalOpen(true);
                       setIsEditModalOpen(false);
                     }}
-                    className="rounded-lg bg-red-100 px-4 py-3 text-red-800 hover:bg-red-200"
+                    className="rounded-lg bg-red-100 px-3 py-2 text-red-800 hover:bg-red-200"
                   >
                     Anulează
                   </button>
