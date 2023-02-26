@@ -7,7 +7,7 @@ const DragAndDrop: FunctionComponent<FileState> = ({ files, setFiles }) => {
       <div className="group relative flex h-64 w-full items-center justify-center">
         <div className="absolute h-full w-full rounded-xl border-4 border-dashed bg-white bg-opacity-80 shadow-lg backdrop-blur-xl transition duration-300 group-hover:scale-105 group-hover:bg-opacity-70"></div>
         <input
-          accept=".jpg, .jpeg .png, .svg, .webp"
+          accept="image/*"
           className="relative z-10 h-full w-full cursor-pointer opacity-0"
           type="file"
           name="bgfile"

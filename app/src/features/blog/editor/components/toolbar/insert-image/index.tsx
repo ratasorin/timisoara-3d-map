@@ -84,7 +84,7 @@ const Bold = () => {
             },
           });
         }}
-        accept=".jpg, .jpeg .png, .svg, .webp"
+        accept="image/*"
         type="file"
         className="hidden"
       />
