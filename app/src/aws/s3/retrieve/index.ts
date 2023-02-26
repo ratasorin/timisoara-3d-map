@@ -13,7 +13,7 @@ export const retrieveS3StoredImage = async (imageKey: string) => {
 };
 
 export const retrieveFallbackImage = async () => {
-  const response = await fetch("http://localhost:3000/missing.jpg");
+  const response = await fetch("/missing.jpg");
 
   if (!response.ok) throw new Error();
 

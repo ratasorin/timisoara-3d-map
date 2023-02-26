@@ -54,7 +54,7 @@ const Carousel: FunctionComponent<{
         <div className="relative w-full pt-2" key={imageKey}>
           <img
             className="m-auto h-40 rounded-md"
-            src={`http://localhost:3000/resources/${imageKey}`}
+            src={`/resources/${imageKey}`}
             alt={buildingName}
           />
         </div>

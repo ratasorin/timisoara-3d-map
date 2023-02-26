@@ -13,7 +13,7 @@ const Avatar: FunctionComponent<{
     >
       <RadixAvatar.Image
         className="h-full w-full rounded-full object-cover"
-        src={`http://localhost:3000/resources/${profilePictureKey || ""}`}
+        src={`/resources/${profilePictureKey || ""}`}
         alt={username}
       />
       <RadixAvatar.Fallback className="text-violet11 leading-1 flex h-full w-full items-center justify-center bg-zinc-100 text-lg font-medium">

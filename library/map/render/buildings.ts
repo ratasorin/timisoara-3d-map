@@ -24,7 +24,7 @@ const renderBuilding = (heading: number, href: string, height: number) => {
 };
 
 export const buildingRenderer = new UniqueValueRenderer({
-  defaultSymbol: renderBuilding(0, "http://localhost:3000/church.glb", 50),
+  defaultSymbol: renderBuilding(0, "/church.glb", 50),
   field: "osm_id",
   uniqueValueInfos: Buildings.map((building) => ({
     label: building.name,

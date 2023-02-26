@@ -57,7 +57,7 @@ const BuildingInformationModal: FunctionComponent<{
                   <Avatar.Root className="inline-flex h-9 w-9 select-none items-center justify-center overflow-hidden rounded-full bg-black align-middle">
                     <Avatar.Image
                       className="h-full w-full rounded-full object-cover"
-                      src={`http://localhost:3000/resources/${
+                      src={`/resources/${
                         building.author.picture?.imageKey || ""
                       }`}
                       alt={building.author.name}

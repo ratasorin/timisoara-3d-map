@@ -19,11 +19,11 @@ const Sidebar = () => {
     ["buildings", buildingSearchQuery],
     () => {
       if (!buildingSearchQuery && buildingSearchQuery !== "") return [];
-      return fetch(
-        `http://localhost:3000/api/buildings/read/${buildingSearchQuery}`
-      ).then((response) => {
-        return response.json();
-      });
+      return fetch(`/api/buildings/read/${buildingSearchQuery}`).then(
+        (response) => {
+          return response.json();
+        }
+      );
     }
   );
 
