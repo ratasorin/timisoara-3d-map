@@ -2,21 +2,35 @@ import { Buildings } from "library/map/assets";
 import { prisma } from "~/db.server";
 
 const seed = async () => {
-  const { id: userId } = await prisma.user.create({
+  const { id: sorinId } = await prisma.user.create({
     data: {
       email: "ratasorin0@gmail.com",
       name: "Rata Sorin",
-      password: "NarutoLover",
+      password: "SorinLikesNadira",
       picture: {
         create: {
-          imageKey: "naruto.png",
+          imageKey: "Sorinpfp.jpeg",
         },
       },
     },
   });
+
+  const { id: nadiraId } = await prisma.user.create({
+    data: {
+      email: "nadira.bodrogean@gmail.com",
+      name: "Nadira Bodrogean",
+      password: "NadiraLikesSorin",
+      picture: {
+        create: {
+          imageKey: "Nadirapfp.jpeg",
+        },
+      },
+    },
+  });
+
   const { id: churchTagId } = await prisma.buildingTag.create({
     data: {
-      tag: "biserică",
+      tag: "biserica",
     },
     select: { id: true },
   });
@@ -28,7 +42,7 @@ const seed = async () => {
         description: `${Buildings[0].name} is a very beautiful church!`,
         osmId: Buildings[0].osm_id,
         buildingTagId: churchTagId,
-        userId,
+        userId: sorinId,
         BuildingPictures: {
           createMany: {
             data: [
@@ -49,7 +63,7 @@ const seed = async () => {
         description: `${Buildings[1].name} is a very beautiful church!`,
         osmId: Buildings[1].osm_id,
         buildingTagId: churchTagId,
-        userId,
+        userId: nadiraId,
         BuildingPictures: {
           createMany: {
             data: [
@@ -78,7 +92,7 @@ const seed = async () => {
         description: `${Buildings[2].name} is a very beautiful church!`,
         osmId: Buildings[2].osm_id,
         buildingTagId: churchTagId,
-        userId,
+        userId: nadiraId,
       },
       select: { id: true },
     });
