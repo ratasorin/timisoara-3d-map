@@ -67,7 +67,7 @@ const Blog = () => {
   useEffect(() => {}, [addedLikes]);
   if (readonly)
     return (
-      <div className="flex h-full flex-col p-4 font-mono">
+      <div className="flex h-screen flex-col p-4 font-mono">
         <div className="flex w-full flex-row items-center">
           <Avatar
             profilePictureKey={blog.author.picture?.imageKey}
@@ -100,14 +100,16 @@ const Blog = () => {
           </span>
         </div>
         <span className="my-1"></span>
-        <h1 className="overflow-hidden text-ellipsis p-1 text-2xl font-bold">
-          {blog.title}
-        </h1>
-        <span className="my-1"></span>
-        <ClientEditor
-          editorState={JSON.parse(blog.richContent)}
-          readonly={readonly}
-        />
+        <div className="flex flex-1 flex-col">
+          <h1 className="overflow-hidden text-ellipsis p-1 text-2xl font-bold">
+            {blog.title}
+          </h1>
+          <span className="my-1"></span>
+          <ClientEditor
+            editorState={JSON.parse(blog.richContent)}
+            readonly={readonly}
+          />
+        </div>
       </div>
     );
 };

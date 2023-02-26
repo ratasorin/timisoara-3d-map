@@ -40,7 +40,7 @@ function Editor({ editorState, readonly }: EditorProps) {
         },
       }}
     >
-      <div className="flex h-full flex-col font-mono">
+      <div className="inline-flex flex-1 flex-col overflow-y-auto overflow-x-hidden font-mono">
         {!readonly && <Toolbar />}
         <RichTextPlugin
           contentEditable={<ContentEditable className="h-full" />}

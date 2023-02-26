@@ -1,4 +1,4 @@
-import { Link, Outlet } from "@remix-run/react";
+import { Link, Outlet, useNavigate } from "@remix-run/react";
 import { useState } from "react";
 import { MdClose, MdMenu } from "react-icons/md";
 import Avatar from "~/src/components/avatar";
@@ -9,6 +9,7 @@ import { useUser } from "~/src/hooks/user";
 const Blogs = () => {
   const { user } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
   return (
     <>
       <nav className="relative top-0 left-0 flex h-16 w-full flex-row items-center justify-between px-4 font-mono">
@@ -61,7 +62,26 @@ const Blogs = () => {
             username={user.name}
           />
         ) : (
-          <Avatar profilePictureKey={undefined} username={"??"} />
+          <div className="inline">
+            <Avatar profilePictureKey={undefined} username={"??"} />
+            <button
+              onClick={() => {
+                const redirectBackTo = new URLSearchParams();
+                redirectBackTo.set(
+                  "redirect-back-to",
+                  location.pathname + location.search
+                );
+                navigate({
+                  pathname: "/auth",
+                  search: redirectBackTo.toString(),
+                });
+              }}
+              type="button"
+              className="rounded-lg px-3 py-2 font-mono text-sm hover:bg-zinc-100"
+            >
+              Loghează-te
+            </button>
+          </div>
         )}
       </nav>
       <Outlet></Outlet>

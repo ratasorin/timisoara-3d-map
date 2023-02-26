@@ -12,7 +12,7 @@ const Title: FunctionComponent<{
       required
       name="title"
       defaultValue={title}
-      className="flex-1 rounded-xl p-2 text-xl"
+      className="rounded-xl p-2 text-xl"
     />
   );
 };
