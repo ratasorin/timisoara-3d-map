@@ -9,7 +9,7 @@ const seed = async () => {
       password: "SorinLikesNadira",
       picture: {
         create: {
-          imageKey: "Sorinpfp.jpeg",
+          imageKey: "sorin-profile-picture.png",
         },
       },
     },
@@ -22,7 +22,7 @@ const seed = async () => {
       password: "NadiraLikesSorin",
       picture: {
         create: {
-          imageKey: "Nadirapfp.jpeg",
+          imageKey: "nadira-profile-picture.png",
         },
       },
     },
